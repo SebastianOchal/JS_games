@@ -1,0 +1,26 @@
+#gameGrid{
+    width: 500px;
+    height: 500px;
+    padding: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: slategray;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px 10px;
+}
+.grid-Item{
+    background-color: lightblue;
+    border-radius: 10px;
+    border: none;
+    opacity: 50%;
+}
+
+.grid-Item:hover{
+    opacity: 75%;
+    cursor: pointer;
+}
