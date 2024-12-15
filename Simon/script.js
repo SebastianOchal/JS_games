@@ -45,5 +45,16 @@ function gameControler(){
         console.log(`sequence num ${sequenceNum}`);
     }
 }
-gameGrid.onclick = gameControler;
+function userInput(){
+    gridButtons.forEach((button) =>{
+        button.addEventListener(`click`,(event)=> {
+            const clickedItem = event.target;
+            const index = gridButtons.indexOf(clickedItem);
+            console.log(`button number: ${index}`);
+        })
+    })
+    
+    
+}
+userInput();
 asignColour();
