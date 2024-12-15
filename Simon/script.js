@@ -35,26 +35,59 @@ function gridSizeControler(){
     
 let sequence = []
 let sequenceNum = 1;
-function gameControler(){
+function addSequnceNum(){
     let nextNum = Math.floor(Math.random() * gridButtons.length + 1);
     console.log(nextNum);
     if((sequence.length) < sequenceNum){
         sequence.push(nextNum);
         console.log(sequence);
-        ++sequenceNum;
         console.log(`sequence num ${sequenceNum}`);
+        animateSequnce();
     }
 }
+function animateSequnce(){
+    sequence.forEach(num => {
+        console.log(`loop num: ${num}`)
+        gridButtons.forEach(button =>{
+            let index = gridButtons.indexOf(button);
+            console.log(`button number: ${index}`);
+            console.log(`index: ${index+1} num: ${num}`)
+            if(index+1 === num){
+                button.style.opacity = 1;
+                setTimeout(function() {
+                    button.style.opacity = 0.5;
+                }, 1000);
+            };
+        });
+    });
+    userInput();
+}
+let userInputs = []
 function userInput(){
     gridButtons.forEach((button) =>{
         button.addEventListener(`click`,(event)=> {
             const clickedItem = event.target;
             const index = gridButtons.indexOf(clickedItem);
-            console.log(`button number: ${index}`);
+            userInputs.push(index);
+            userInputs.forEach((input,i) =>{
+                console.log(`Input: ${input+1} sequence: ${sequence[i]}`)
+                if ((input+1) !== sequence[i]) {
+                    console.log("FALSE");
+                }else{
+                    console.log("TRUE");
+                }
+            })
         })
     })
     
     
 }
-userInput();
-asignColour();
+let playing = true;
+function playGame(){
+    asignColour();
+    addSequnceNum();
+
+}
+if (playing == true){
+    playGame();
+}

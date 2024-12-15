@@ -17,10 +17,10 @@
     background-color: lightblue;
     border-radius: 10px;
     border: none;
-    opacity: 50%;
+    opacity: 0.3;
 }
 
 .grid-Item:hover{
-    opacity: 75%;
+    opacity: 0.5;
     cursor: pointer;
 }
