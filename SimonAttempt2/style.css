@@ -42,4 +42,8 @@
 .text{
     font-family: Arial, Helvetica, sans-serif;
     color: aliceblue;
+    
+}
+.textCon{
+    display: flex;
 }

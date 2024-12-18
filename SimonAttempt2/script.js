@@ -24,6 +24,18 @@ gridSizeButtons.forEach((button) =>{
         }
     })
 })
+function deleteBoard(){
+    const clearButtons = document.getElementsByClassName("button");
+    let toDelete = Array.from(clearButtons);
+    toDelete.forEach(button =>{
+        if(((gridSize * gridSize) !== buttons.length)){
+            button.remove();
+            buttons.splice(0,(gridSize * gridSize));
+            console.log(buttons);
+        }
+        
+    })
+}
 function CreateBoard(){
     grid.style.gridTemplateColumns = `repeat(${gridSize}, auto)`;
     grid.style.gridTemplateRows = `repeat(${gridSize}, auto)`;
@@ -35,22 +47,16 @@ function CreateBoard(){
         button.classList.add("button");
         buttons.push(button);
     }
-    buttons.forEach(buttons =>{
-        console.log(buttons);
-    })
-}
-function deleteBoard(){
-    const buttons = document.getElementsByClassName("button");
-    const toDelete = Array.from(buttons);
-    toDelete.forEach(button =>{
-        button.remove();
-    })
+    EnableButtons();
 }
 CreateBoard();
 
 const start = document.querySelector("#start");
 start.addEventListener("click", ()=>{
-    if(!playing) play();
+    if(!playing){
+        play();
+        console.log(buttons);
+    } 
 })
 let order = [];
 let playerOrder = [];
@@ -119,23 +125,25 @@ function flashAll(){
         }
     })
 }
-
-buttons.forEach((button) =>{
-    let buttonIndex = buttons.indexOf(button);
-    button.addEventListener("click", (event)=>{
-        if (playing){
-            let buttonPressed = event.target;
-            playerOrder.push(buttonIndex);
-            buttonPressed.style.opacity = 1;
-            check();
-            if(!win){
-                setTimeout(() => {
-                    clearFlash();
-                }, 300);
+function EnableButtons(){
+    buttons.forEach(button =>{
+        button.addEventListener("click", (event)=>{
+            if (playing){
+                let buttonPressed = event.target;
+                let buttonIndex = buttons.indexOf(buttonPressed);
+                playerOrder.push(buttonIndex);
+                buttonPressed.style.opacity = 1;
+                check();
+                if(!win){
+                    setTimeout(() => {
+                        clearFlash();
+                    }, 300);
+                }
             }
-        }
+        })
     })
-})
+}
+
 
 function check(){
     if(playerOrder[playerOrder.length -1] !== order[playerOrder.length-1]) good = false;
