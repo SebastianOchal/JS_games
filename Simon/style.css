@@ -19,8 +19,3 @@
     border: none;
     opacity: 0.3;
 }
-
-.grid-Item:hover{
-    opacity: 0.5;
-    cursor: pointer;
-}
